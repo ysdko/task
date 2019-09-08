@@ -1,0 +1,6 @@
+h1 タスクの新規一覧
+
+.nav.justify-content-emd
+    = link_to '一覧', task1s_path, class: 'nav-link'
+
+= render partial: 'form', locals: {task: @task}
