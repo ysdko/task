@@ -23,9 +23,13 @@ class Task1sController < ApplicationController
   end
 
   def create
-    task = Task1.new(task_params)
-    task.save!
-    redirect_to task1s_url, notice: "タスク#{task.name}を登録しました"
+    @task = Task1.new(task_params)
+    if @task.save
+    redirect_to @task, notice: "タスク#{@task.name}を登録しました"
+    else
+      render :new
+    end
+    
   end
 
   def destroy
@@ -34,12 +38,14 @@ task.destroy
 redirect_to task1s_url, notice: "タスクを削除しました"
 end
 
+
+
   private
 
   def task_params
     params.require(:task1).permit(:name, :description)
   end
 
-  
+
 
 end
