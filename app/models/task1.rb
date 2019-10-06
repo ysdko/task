@@ -4,6 +4,10 @@ class Task1 < ApplicationRecord
     validates :name, length: {maximum: 30}
     validate :validate_name_not_including_comma
 
+    berongs_to :user
+
+    scope :recent, -> {order(createed_at: desc)}
+
     private 
 
     def set_names_name
